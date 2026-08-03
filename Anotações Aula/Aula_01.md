@@ -106,5 +106,5 @@ Permite que objetos de diferentes classes respondam à mesma mensagem de formas 
 
 ---
 ### Resolvidos
-Os exercícios passados foi colocado no repositório: ([Exercícios)](https://github.com/yasminComputing/LaboratorioDesenvolvimentoDeSoftware/tree/main/Aula_01-ExerciciosRevisao_29.07])
+Os exercícios passados foi colocado no repositório: ([Exercícios)](https://github.com/yasminComputing/LaboratorioDesenvolvimentoDeSoftware/tree/main/Aula_01-ExerciciosRevisao_29.07)
 
