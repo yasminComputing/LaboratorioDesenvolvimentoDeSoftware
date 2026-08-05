@@ -11,3 +11,16 @@
     * Falta de Recursos Modernos
 
 Porém, o Swing é um método que facilmente poderemos compreender o desenvolvimento de software. 
+
+Jpanel é somente um paniel, somente para um alerta na tela
+JFrame: é onde vai ser o formulario.
+
+Comando para aparecer mensagem de aviso quando clicado no botão
+````java
+ JOptionPane.showMessageDialog(null,"Pessoa Salva com Sucesso!");
+
+`````
+
+Declaracao de botoes btnNomeDaAcao que ele vai executar
+
+Quando clicar no botão ou na propriedade colocado no **Design** ali em properties vai aparecer para mudar o nome do botão e no code na declaracao da Variable Name tem algum padrao para seguir como botao: btnNomeDaAcao, botacao onde vai ser para inserir o txt vai ser txtNome e o label. 
