@@ -390,5 +390,3 @@ JOptionPane.showMessageDialog(
 ---
 pnlCadastro
 ```
-
-Isso deixa o código mais organizado e facilita a identificação dos componentes.
