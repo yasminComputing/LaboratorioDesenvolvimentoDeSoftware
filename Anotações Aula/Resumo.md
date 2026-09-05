@@ -497,103 +497,44 @@ Formulário (JFrame)  →  Classe modelo (ex.: Pessoa)  →  List<Pessoa>  →  
 ```
 ---
 
-Conversa com o Gemini
-resume isso # Complemento do Resumo — Aula 06
-
-
 
 ## 9. Edição e Exclusão de Elementos na `JTable`
 
-
-
-A atividade da Aula 06 solicita que, além do cadastro, leitura e escrita em arquivos, o sistema permita a **exclusão e edição dos elementos já cadastrados**.
-
-
-
----
-
-
-
 ## 9.1 Exclusão de um elemento
 
-
-
-Para excluir uma pessoa, primeiro é necessário identificar qual linha da `JTable` foi selecionada.
-
-
-
-O método utilizado para isso é:
-
-
-
+Para excluir uma pessoa, primeiro é necessário identificar qual linha da `JTable` foi selecionada.O método utilizado para isso é:
 ```java
 
 int linha = tbl_Pessoas.getSelectedRow();
 
 ```
-
-
-
-A variável `linha` recebe a posição da linha selecionada.
-
-
-
-Se nenhuma linha estiver selecionada, o valor retornado é `-1`.
-
-
+A variável `linha` recebe a posição da linha selecionada.Se nenhuma linha estiver selecionada, o valor retornado é `-1`.
 
 ```java
 
 if (linha == -1) {
 
-JOptionPane.showMessageDialog(
-
-null,
-
-"Selecione uma pessoa para excluir."
-
-);
-
-return;
-
+    JOptionPane.showMessageDialog(null,"Selecione uma pessoa para excluir.");   
+    return;
 }
 
 ```
-
-
-
 Depois de verificar a seleção, o elemento pode ser removido da lista:
-
-
 
 ```java
 
 listaPessoas.remove(linha);
 
 ```
-
-
-
 Após remover da lista, é necessário salvar novamente os dados no arquivo:
-
-
-
 ```java
 
 arquivo.gravaArquivo();
 
 ```
-
-
-
 E atualizar a tabela.
 
-
-
 ### Fluxo da exclusão
-
-
-
 ```text
 
 Selecionar uma linha da JTable
@@ -623,129 +564,60 @@ Gravar no arquivo
 Atualizar a JTable
 
 ```
-
-
-
 ---
 
 
 
 ## 9.2 Edição de um elemento
-
-
-
-Para editar um cadastro, primeiro o usuário seleciona uma pessoa na tabela e clica no botão `Editar`.
-
-
-
-Primeiro, é obtida a linha selecionada:
-
-
-
+Para editar um cadastro, primeiro o usuário seleciona uma pessoa na tabela e clica no botão `Editar`.Primeiro, é obtida a linha selecionada:
 ```java
 
 int linha = tbl_Pessoas.getSelectedRow();
 
 ```
-
-
-
 Se nenhuma pessoa estiver selecionada:
-
-
 
 ```java
 
 if (linha == -1) {
 
-JOptionPane.showMessageDialog(
-
-null,
-
-"Selecione uma pessoa para editar."
-
-);
-
-return;
-
+    JOptionPane.showMessageDialog(null,"Selecione uma pessoa para editar.");
+    return;
 }
 
 ```
-
-
-
 Depois, a linha selecionada é armazenada em uma variável chamada `linhaEdicao`:
-
-
 
 ```java
 
 linhaEdicao = linha;
 
 ```
-
-
-
-A variável `linhaEdicao` serve para guardar **qual posição da lista está sendo editada**.
-
-
-
-No exemplo da aula, ela é inicializada com `-1`:
-
-
-
+A variável `linhaEdicao` serve para guardar **qual posição da lista está sendo editada**.No exemplo da aula, ela é inicializada com `-1`:
 ```java
 
 private int linhaEdicao = -1;
 
 ```
-
-
-
 O valor `-1` indica que **não existe nenhuma edição em andamento**.
-
-
 
 ---
 
-
-
 ## 9.3 Carregando os dados para edição
-
-
-
 Depois de identificar a linha, o objeto correspondente é recuperado da lista:
-
-
 
 ```java
 
 Pessoa p = listaPessoas.get(linha);
 
 ```
-
-
-
-Os dados do objeto são então colocados novamente nos componentes do formulário.
-
-
-
-Para o nome:
-
-
-
+Os dados do objeto são então colocados novamente nos componentes do formulário.Para o nome:
 ```java
 
 txtNome.setText(p.nome);
 
 ```
-
-
-
 Para o sexo:
-
-
-
 ```java
 
 if (p.sexo == 'M') {
@@ -759,354 +631,160 @@ rdoFeminino.setSelected(true);
 }
 
 ```
-
-
-
 Para o idioma:
-
-
-
 ```java
 
 cmb_Idioma.setSelectedItem(p.idioma);
 
 ```
-
-
-
 Assim, ao clicar em `Editar`, os dados da pessoa selecionada são carregados no formulário para que o usuário possa modificá-los.
 
 
-
 ### Implementação da edição
-
-
-
 ```java
 
 int linha = tbl_Pessoas.getSelectedRow();
-
-
-
 if (linha == -1) {
 
-JOptionPane.showMessageDialog(
-
-null,
-
-"Selecione uma pessoa para editar."
-
-);
-
-return;
-
+    JOptionPane.showMessageDialog(null,"Selecione uma pessoa para editar.");
+    return;
 }
-
-
 
 linhaEdicao = linha;
-
-
-
 Pessoa p = listaPessoas.get(linha);
-
-
-
 txtNome.setText(p.nome);
 
-
-
 if (p.sexo == 'M') {
-
-rdoMasculino.setSelected(true);
-
+    rdoMasculino.setSelected(true);
 } else {
-
-rdoFeminino.setSelected(true);
-
+    rdoFeminino.setSelected(true);
 }
-
-
-
 cmb_Idioma.setSelectedItem(p.idioma);
 
 ```
-
-
-
 ---
-
-
-
 ## 9.4 Salvar uma edição
-
-
-
 O botão `Salvar` precisa verificar se o usuário está:
-
-
 
 - cadastrando uma nova pessoa; ou
 
 - editando uma pessoa existente.
-
-
-
 Para isso, é utilizada a variável `linhaEdicao`.
 
-
-
 ### Novo cadastro
-
-
-
 Quando:
-
-
-
 ```java
 
 linhaEdicao == -1
 
 ```
-
-
-
-significa que não existe uma edição em andamento.
-
-
-
-Nesse caso, o objeto é adicionado normalmente à lista:
-
-
+significa que não existe uma edição em andamento.Nesse caso, o objeto é adicionado normalmente à lista:
 
 ```java
 
 if (linhaEdicao == -1) {
 
-listaPessoas.add(p);
+    listaPessoas.add(p);
 
 }
 
 ```
-
-
-
 ### Editar cadastro existente
-
-
-
 Quando:
-
-
-
 ```java
 
 linhaEdicao != -1
 
 ```
-
-
-
-significa que existe um cadastro sendo editado.
-
-
-
-Nesse caso, o objeto antigo é substituído pelo novo:
-
-
+significa que existe um cadastro sendo editado.Nesse caso, o objeto antigo é substituído pelo novo:
 
 ```java
 
 else {
 
-listaPessoas.set(linhaEdicao, p);
-
-linhaEdicao = -1;
-
+    listaPessoas.set(linhaEdicao, p);
+    linhaEdicao = -1;
 }
 
 ```
-
-
-
 O método `set()` substitui o elemento que está naquela posição da lista.
 
-
-
 ---
-
-
-
 ## 9.5 Código da lógica de Salvar
 
-
-
 A lógica de salvar segue esta estrutura:
-
-
 
 ```java
 
 String nome = txtNome.getText();
-
-
-
-String idioma =
-
-cmb_Idioma.getSelectedItem().toString();
-
-
-
+String idioma = cmb_Idioma.getSelectedItem().toString();
 Pessoa p = new Pessoa(nome, sexo, idioma);
 
-
-
 if (linhaEdicao == -1) {
-
-listaPessoas.add(p);
-
+    listaPessoas.add(p);
 } else {
-
-listaPessoas.set(linhaEdicao, p);
-
-linhaEdicao = -1;
-
+    listaPessoas.set(linhaEdicao, p);
+    linhaEdicao = -1;
 }
-
-
-
 arquivo.gravaArquivo();
 
 carregarTabela();
 
 ```
-
-
-
 Depois de salvar:
-
-
-
 ```java
 
 arquivo.gravaArquivo();
 
 ```
-
-
-
-grava novamente os dados no arquivo.
-
-
-
-E:
-
-
-
+grava novamente os dados no arquivo.E
 ```java
 
 carregarTabela();
 
 ```
-
-
-
 atualiza os dados apresentados na tabela.
-
-
 
 ---
 
-
-
 ## 9.6 Diferença entre `add`, `set` e `remove`
-
-
-
 Esses três métodos são importantes para a prática.
-
-
-
-### `add()`
-
-
-
-Adiciona um novo elemento à lista:
-
-
-
+- `add()`: Adiciona um novo elemento à lista:
 ```java
 
 listaPessoas.add(p);
 
 ```
-
-
-
 Usado para **novo cadastro**.
-
-
-
-### `set()`
-
-
-
-Substitui um elemento existente:
-
-
-
+- `set()`: Substitui um elemento existente:
 ```java
 
 listaPessoas.set(linhaEdicao, p);
 
 ```
-
-
-
 Usado para **edição**.
 
 
 
-### `remove()`
-
-
-
-Remove um elemento:
-
-
-
+- `remove()`: Remove um elemento:
 ```java
 
 listaPessoas.remove(linha);
 
 ```
-
-
-
 Usado para **exclusão**.
 
 
 
-### Resumindo
-
-
-
+###  Resumindo
 | Operação | Método | Função |
-
-|---|---|---|
-
+| :--- | :--- | :--- |
 | Novo cadastro | `add()` | Adiciona um elemento |
-
 | Edição | `set()` | Substitui um elemento |
-
 | Exclusão | `remove()` | Remove um elemento |
 
 
-
 ---
-
-
 
 ## 9.7 Atualização da `JTable`
 
@@ -1373,75 +1051,6 @@ Atualizar JTable
 
 
 ---
-
-
-
-## 9.12 O que a atividade da Aula 06 exige
-
-
-
-A atividade final do PDF solicita criar um sistema de **cadastro de alunos**.
-
-
-
-Cada aluno deve possuir:
-
-
-
-- Nome completo;
-
-- Data de nascimento no formato `DD/MM/AAAA`;
-
-- Sexo;
-
-- Matrícula, sendo um número único;
-
-- Curso;
-
-- CPF;
-
-- Endereço completo:
-
-- rua;
-
-- número;
-
-- bairro;
-
-- cidade;
-
-- CEP;
-
-- Estado utilizando `ComboBox`;
-
-- Telefone de contato.
-
-
-
-Além disso, o sistema deve:
-
-
-
-1. Utilizar classes;
-
-2. Adicionar os dados em uma lista;
-
-3. Apresentar os dados na tabela;
-
-4. Implementar leitura e escrita em arquivos;
-
-5. Salvar a lista em um arquivo texto;
-
-6. Ao abrir o sistema, carregar a lista e apresentá-la na tabela;
-
-7. Permitir a **exclusão e edição dos elementos já cadastrados**.
-
-
-
----
-
-
-
 ## 9.13 Resumo para memorizar
 
 
@@ -1499,149 +1108,45 @@ CARREGARTABELA
 → Atualizar a JTable com os dados da lista
 
 ```
-
-
-
-## O principal para a prova prática
-
-
-
-```text
-
-NOVO:
-
-listaPessoas.add(p);
-
-
-
-EDITAR:
-
-listaPessoas.set(linhaEdicao, p);
-
-
-
-EXCLUIR:
-
-listaPessoas.remove(linha);
-
-
-
-SELECIONAR LINHA:
-
-tbl_Pessoas.getSelectedRow();
-
-
-
-SALVAR:
-
-arquivo.gravaArquivo();
-
-
-
-ATUALIZAR TABELA:
-
-carregarTabela();
-
-```
-
-
-
 ## 9.14 Outros componentes da Aula 06
 
 
 
 ### `JTextArea`
-
-
-
-A `JTextArea` permite trabalhar com várias linhas e colunas e adicionar textos dentro dela.
-
-
-
-A diferença para o `JTextField` é que a `JTextArea` permite trabalhar com uma quantidade maior de linhas e colunas.
-
-
-
-Para adicionar texto ao conteúdo existente, utiliza-se o método:
-
-
-
+A `JTextArea` permite trabalhar com várias linhas e colunas e adicionar textos dentro dela.A diferença para o `JTextField` é que a `JTextArea` permite trabalhar com uma quantidade maior de linhas e colunas.Para adicionar texto ao conteúdo existente, utiliza-se o método:
 ```java
 
 append()
 
 ```
-
-
-
-O método `append()` adiciona um novo conteúdo ao texto que já existe.
-
-
-
-Também pode ser utilizada uma quebra de linha após cada mensagem adicionada.
-
-
+O método `append()` adiciona um novo conteúdo ao texto que já existe.Também pode ser utilizada uma quebra de linha após cada mensagem adicionada.
 
 ---
-
-
-
 ### `JRadioButton`
-
-
-
 O `JRadioButton` é utilizado para permitir que o usuário escolha **uma única opção** entre opções mutuamente exclusivas.
-
-
-
 Sem agrupamento, dois `RadioButton` podem ser selecionados simultaneamente.
-
-
-
 Para impedir isso, deve-se utilizar um:
-
-
 
 ```text
 
 Button Group
 
 ```
-
-
-
-O `Button Group` não aparece visualmente no formulário.
-
-
-
-Para verificar qual opção está selecionada, utiliza-se:
-
-
+O `Button Group` não aparece visualmente no formulário.Para verificar qual opção está selecionada, utiliza-se:
 
 ```java
 
 isSelected()
 
 ```
-
-
-
 Na aula, é utilizada uma variável global do tipo `char` chamada:
-
-
 
 ```java
 
 char sexo;
 
 ```
-
-
-
 Exemplo:
-
-
-
 ```java
 
 if (rdo_Masculino.isSelected()) {
@@ -1655,25 +1160,9 @@ sexo = 'F';
 }
 
 ```
-
-
-
 ---
-
-
-
 ### `JCheckBox`
-
-
-
-O `JCheckBox` permite que o usuário selecione ou desmarque **uma ou mais opções independentes**.
-
-
-
-Diferentemente do `JRadioButton`, vários `CheckBox` podem ser selecionados ao mesmo tempo.
-
-
-
+O `JCheckBox` permite que o usuário selecione ou desmarque **uma ou mais opções independentes**.Diferentemente do `JRadioButton`, vários `CheckBox` podem ser selecionados ao mesmo tempo.
 Na aula, são utilizados nomes como:
 
 
@@ -1687,16 +1176,7 @@ chk_Astronomia
 chk_Esportes
 
 ```
-
-
-
-São declarados três atributos do tipo `boolean`.
-
-
-
-Para verificar se um `CheckBox` está selecionado:
-
-
+São declarados três atributos do tipo `boolean`.Para verificar se um `CheckBox` está selecionado:
 
 ```java
 
@@ -2117,9 +1597,6 @@ Apresentar os dados na JTable
 
 
 ## Componentes
-
-
-
 | Componente | Função principal |
 
 |---|---|
