@@ -1,2 +1,3 @@
 Mariana Lopes;27/08/2002;Feminino;1315151351;Engenharia de Software;123.145.000-00;Rua Teste,1001;Rondônia;(55)99148484
-João Luiz Barros;02/08/2011;Masculino;1156116;Educação Física;000.000.000-00;Rua dos Andradas,120;Goiás;(51)1477979
+João Luiz Barros;02/08/2011;Masculino;1156116;Arquitetura e Urbanismo;000.000.000-00;Rua dos Andradas,120;Amapá;(51)1477979
+Valéria;10/09/1959;Feminino;156165184;Direito;100.100.156-00;Rua Teste,105;Ceará;(55)89181891
