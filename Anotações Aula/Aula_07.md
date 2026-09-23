@@ -12,5 +12,19 @@ Utilizando o `Command Line`:
 
 ---
 ## Criando BD
-Foi criado um banco de dados `pessoa` e depois outro bd chamado `ESCOLA`.Os códigos de sql desenvolvidos estão ([CÓDIGO])(https://github.com/yasminComputing/LaboratorioDesenvolvimentoDeSoftware/tree/main/Comando_Aula_23.09-Desenvolvido%20em%20Aula))
+Foi criado um banco de dados `pessoa` e depois outro bd chamado `ESCOLA`.Os códigos de sql desenvolvidos estão ([CÓDIGO](https://github.com/yasminComputing/LaboratorioDesenvolvimentoDeSoftware/tree/main/Comando_Aula_23.09-Desenvolvido%20em%20Aula)).
+
+--- 
+## Conectando o java swing com banco de dado
+
+- **Foi criado um pacote *conexa* juntamente com a clase `Conexao` e depois realizado  um import de um arquivo *jar* para realizar a conexão. Por úliimo criado pacote *principal*junto com a classe `Principal` onde chama a classe `Conexao` (c.getConexao()).**
+
+
+- O pacote *beans* é utilizado para mapear as tabelas do banco de dados, ou seja, as classes terão como atributos as colunas da tabelas. 
+
+> Essa conexão está sendo usado o `criação_do_BancoAula01`
+
+- **DAO = Data Access Object ou Objeto de Acesso aos Dados,este pacote, teremos as classes responsáveis por persistir os dados (inserção, edição, exclusão e pesquisa) da aplicação nas tabelas.Resumindo, é ela que executará os códigos SQL no banco.**
+
+Por úliimo foi realizado o método que inserir dados da classe principal para o banco de daodos. 
 
