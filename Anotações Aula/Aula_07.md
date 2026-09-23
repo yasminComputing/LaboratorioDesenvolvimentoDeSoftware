@@ -12,5 +12,5 @@ Utilizando o `Command Line`:
 
 ---
 ## Criando BD
-Foi criado um banco de dados `pessoa` e depois outro bd chamado `ESCOLA`.Os códigos de sql desenvolvidos estão ([])
+Foi criado um banco de dados `pessoa` e depois outro bd chamado `ESCOLA`.Os códigos de sql desenvolvidos estão ([CÓDIGO])(https://github.com/yasminComputing/LaboratorioDesenvolvimentoDeSoftware/tree/main/Comando_Aula_23.09-Desenvolvido%20em%20Aula))
 
